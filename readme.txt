@@ -19,6 +19,8 @@ Instructions on how to use this module:
 
 7) To use the images create a folder within your lib/images called airports
 
+8) In the navigation put <a href="<?php echo SITE_URL?>/index.php/Hub">Hubs</a> to link to the module
+
 Note this uses Tom Sterritt's Hubstats class file, you must have that as well. You can get it here: https://github.com/tomsterritt/HubStats
 Licence
 
