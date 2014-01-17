@@ -1,4 +1,4 @@
-<h3>MVA's Hubs</h3>
+<h3>Hubs</h3>
 
 <?php 
 if(!$hubs)
