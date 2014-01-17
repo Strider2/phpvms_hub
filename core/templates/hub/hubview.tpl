@@ -16,6 +16,9 @@
 </tr>
 </table>
 
+<h3><?php echo $hubs->hubicao;?> map</h3>
+<img src="http://www.gcmap.com/map?P=<?php echo $hubs->hubicao;?>,+&amp;MS=bm&MR=30&MX=700x360&PM=b:disc4:blue%2b%22%25i%25+%28N%2210:yellow&PC=%23ffffff&MP=rect" width="100%" />
+
 <h3><?php echo $hubs->hubicao;?> stats</h3>
 
 <table width="100%" border="1" style="border-collapse:collapse;">
