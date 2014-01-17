@@ -51,6 +51,8 @@ class Hub_admin extends CodonModule
 		$hubr['hubname'] = DB::escape($this->post->hubname);
 		$hubr['lat'] = DB::escape($this->post->lat);
 		$hubr['lng'] = DB::escape($this->post->lng);
+		$hubr['pilotid'] = DB::escape($this->post->pilotid);
+		$hubr['manager'] = DB::escape($this->post->manager);
 		$hubr['image'] = DB::escape($this->post->image);
 
   
@@ -67,7 +69,7 @@ class Hub_admin extends CodonModule
 
  
 
-        HubData::save_new_hub($hubr['hubicao'], $hubr['hubname'], $hubr['lat'], $hubr['lng'], $hubr['image']);
+        HubData::save_new_hub($hubr['hubicao'], $hubr['hubname'], $hubr['lat'], $hubr['lng'], $hubr['pilotid'], $hubr['manager'], $hubr['image']);
                                    
 
        
@@ -91,6 +93,8 @@ class Hub_admin extends CodonModule
         $hb['hubname'] = DB::escape($this->post->hubname);	
 		$hb['lat'] = DB::escape($this->post->lat);
 		$hb['lng'] = DB::escape($this->post->lng);
+		$hb['pilotid'] = DB::escape($this->post->pilotid);
+		$hb['manager'] = DB::escape($this->post->manager);
 		$hb['image'] = DB::escape($this->post->image);
 		$hb['hubid'] = DB::escape($this->post->hubid);
      
@@ -99,6 +103,8 @@ class Hub_admin extends CodonModule
 										   $hb['hubname'],   
 										   $hb['lat'],
 										   $hb['lng'],
+										   $hb['pilotid'],
+										   $hb['manager'],
 										   $hb['image'],
 										   $hb['hubid']);
 

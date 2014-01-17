@@ -35,6 +35,18 @@ $this->show('aircraft/aircraft_header.tpl');
                            <?php echo 'value="'.$hubs->lng.'"'; ?>
                            ></td>
             </tr>
+            <tr>
+                <td>Pilot ID</td>
+                <td><input type="text" name="pilotid"
+                           <?php echo 'value="'.$hubs->pilotid.'"'; ?>
+                           ></td>
+            </tr>
+            <tr>
+                <td>Manager</td>
+                <td><input type="text" name="manager"
+                           <?php echo 'value="'.$hubs->manager.'"'; ?>
+                           ></td>
+            </tr>
                         <tr>
                 <td>Image</td>
                 <td><input type="text" name="image"

@@ -60,6 +60,22 @@ $this->show('hub/hub_header.tpl');
                            </td>
             </tr>
             <tr>
+                <td>Pilot ID</td>
+                <td><input type="text" name="pilotid"
+                           
+                                value="<?php echo $hub['pilotid'];?>"
+                           >
+                           </td>
+            </tr>
+            <tr>
+                <td>Manager</td>
+                <td><input type="text" name="manager"
+                           
+                                value="<?php echo $hub['manager'];?>"
+                           >
+                           </td>
+            </tr>
+            <tr>
                 <td colspan="2"><input type="hidden" name="action" value="save_new_hub" /><input type="submit" value="Save New Hub"></td>
             </tr>
         </form>

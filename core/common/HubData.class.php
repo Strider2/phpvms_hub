@@ -47,20 +47,22 @@ class HubData extends CodonData
         return DB::get_results("SELECT * FROM ".TABLE_PREFIX."airports GROUP BY name");
     }
 				  
-    public function save_new_hub($hubicao, $hubname, $lat, $lng, $image)
+    public function save_new_hub($hubicao, $hubname, $lat, $lng, $pilotid, $manager, $image)
     {
-        $query = "INSERT INTO phpvms_hubs (hubicao, hubname, lat, lng, image)
-                VALUES ('$hubicao', '$hubname', '$lat', '$lng', '$image')";
+        $query = "INSERT INTO phpvms_hubs (hubicao, hubname, lat, lng, pilotid, manager, image)
+                VALUES ('$hubicao', '$hubname', '$lat', '$lng', '$pilotid', '$manager', '$image')";
 
         DB::query($query);
     }
-     public function save_edit_hub($hubicao, $hubname, $lat, $lng, $image, $hubid)
+     public function save_edit_hub($hubicao, $hubname, $lat, $lng, $pilotid, $manager, $image, $hubid)
     {
         $query = "UPDATE phpvms_hubs SET
          hubicao='$hubicao',
 		 hubname='$hubname',
 		 lat='$lat',
 		 lng='$lng',
+		 pilotid='$pilotid',
+		 manager='$manager',
 		 image='$image'
          WHERE hubid='$hubid'";
 

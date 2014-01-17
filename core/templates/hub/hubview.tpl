@@ -14,6 +14,9 @@
     <td><strong>Longtitude:</strong></td>
     <td><?php echo $hubs->lng;?></td>
 </tr>
+<tr>
+	<td><strong>Hub Manager:</strong></td>
+    <td><a href="<?php echo SITE_URL?>/index.php/profile/view/<?php echo $hubs->pilotid;?>"><?php echo $hubs->manager;?></a></td>
 </table>
 
 <h3><?php echo $hubs->hubicao;?> map</h3>
@@ -170,3 +173,7 @@ if($feildvalue != '')
 
 </tr>  
 </table>
+
+<a href="<?php echo SITE_URL?>/index.php/Hub">Back</a>
+
+<p>&copy; Daniel Counahan. V1.1.</p>

@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `phpvms_hubs` (
   `hubname` varchar(255) NOT NULL,
   `lat` float NOT NULL,
   `lng` float NOT NULL,
+  `manager` varchar(100) NOT NULL,
+  `pilotid` int(11) NOT NULL,
   PRIMARY KEY (`hubid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
