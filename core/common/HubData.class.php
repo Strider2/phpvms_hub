@@ -4,14 +4,14 @@ class HubData extends CodonData
 {
     public function get_hub()
     {
-        return DB::get_results("SELECT * FROM ".TABLE_PREFIX."hubs");
+        return DB::get_results("SELECT * FROM ".TABLE_PREFIX."airports WHERE hub = 1");
 		
     }
-	public function getHubs($hubid)
+	public function getHubs($icao)
 	{
 		$query = "SELECT *
-				  FROM " . TABLE_PREFIX . "hubs
-				  WHERE hubid ='$hubid'";
+				  FROM " . TABLE_PREFIX . "airports
+				  WHERE hub = 1";
 				  
 		return DB::get_row($query);
 	}
@@ -29,9 +29,9 @@ class HubData extends CodonData
     {
         return DB::get_results("SELECT * FROM ".TABLE_PREFIX."codeshares GROUP BY airline");
     }*/
-	    public function get_hubs($hubid)
+	    public function get_hubs($icao)
     {
-        $query = "SELECT * FROM ".TABLE_PREFIX ."hubs WHERE hubid='$hubid'";
+        $query = "SELECT * FROM ".TABLE_PREFIX ."hubs WHERE hubicao='$icao'";
 
         return DB::get_row($query);
     }

@@ -3,10 +3,10 @@
 <table width="100%" border="0">
 <tr>
 	<td><strong>Hub ICAO:</strong></td>
-    <td><?php echo $hubs->hubicao;?></td>
+    <td><?php echo $hubs->icao;?></td>
     <td><strong>Airport Name:</strong></td>
-    <td><?php echo $hubs->hubname;?></td>
-    <td rowspan="2"><img src="<?php echo SITE_URL;?>/lib/images/airports/<?php echo $hubs->image;?>.jpg" alt="<?php echo $hubs->hubicao;?>"/></td>
+    <td><?php echo $hubs->name;?></td>
+    <td rowspan="2"><img src="<?php echo SITE_URL;?>/lib/images/airports/<?php echo $hubs->icao;?>.jpg" alt="<?php echo $hubs->icao;?>"/></td>
 </tr>
 <tr>
 	<td><strong>Latitude:</strong></td>
@@ -16,44 +16,45 @@
 </tr>
 <tr>
 	<td><strong>Hub Manager:</strong></td>
-    <td><a href="<?php echo SITE_URL?>/index.php/profile/view/<?php echo $hubs->pilotid;?>"><?php echo $hubs->manager;?></a></td>
+    $manager = HubData::get_hubs($hubs->icao);
+    <td><a href="<?php echo SITE_URL?>/index.php/profile/view/<?php echo $manager->pilotid;?>"><?php echo $manager->manager;?></a></td>
 </table>
 
-<h3><?php echo $hubs->hubicao;?> map</h3>
-<img src="http://www.gcmap.com/map?P=<?php echo $hubs->hubicao;?>,+&amp;MS=bm&MR=30&MX=700x360&PM=b:disc4:blue%2b%22%25i%25+%28N%2210:yellow&PC=%23ffffff&MP=rect" width="100%" />
+<h3><?php echo $hubs->icao;?> map</h3>
+<img src="http://www.gcmap.com/map?P=<?php echo $hubs->icao;?>,+&amp;MS=bm&MR=30&MX=700x360&PM=b:disc4:blue%2b%22%25i%25+%28N%2210:yellow&PC=%23ffffff&MP=rect" width="100%" />
 
-<h3><?php echo $hubs->hubicao;?> stats</h3>
+<h3><?php echo $hubs->icao;?> stats</h3>
 
 <table width="100%" border="1" style="border-collapse:collapse;">
 <tr>
 	<td><strong>Number of Pilots:</strong></td>
-    <td><?php echo HubStats::CountPilots($hubs->hubicao);?></td>
+    <td><?php echo HubStats::CountPilots($hubs->icao);?></td>
 </tr>
 <tr>
 	<td><strong>Number of Flights Flown:</strong></td>
-    <td><?php echo HubStats::CountFlights($hubs->hubicao);?></td>
+    <td><?php echo HubStats::CountFlights($hubs->icao);?></td>
 </tr>
 <tr>
-	<td><strong>Number of Routes Flown From <?php echo $hubs->hubicao;?>:</strong></td>
-    <td><?php echo HubStats::CountRoutes($hubs->hubicao);?></td>
+	<td><strong>Number of Routes Flown From <?php echo $hubs->icao;?>:</strong></td>
+    <td><?php echo HubStats::CountRoutes($hubs->icao);?></td>
 </tr>
 <tr>
 	<td><strong>Total Miles Flown:</strong></td>
-    <td><?php echo HubStats::TotalMiles($hubs->hubicao);?>nm</td>
+    <td><?php echo HubStats::TotalMiles($hubs->icao);?>nm</td>
 </tr>
 <tr>
 	<td><strong>Total Hours Flown:</strong></td>
-    <td><?php echo round(HubStats::TotalHours($hubs->hubicao));?></td>
+    <td><?php echo round(HubStats::TotalHours($hubs->icao));?></td>
 </tr>
 <tr>
 	<td><strong>Total Fuel Used:</strong></td>
-    <td><?php echo round(HubStats::TotalFuelUsed($hubs->hubicao));?>lbs</td>
+    <td><?php echo round(HubStats::TotalFuelUsed($hubs->icao));?>lbs</td>
 </tr>
 </table>
 
-<h3>Pilot Roster for <?php echo $hubs->hubicao;?></h3>
+<h3>Pilot Roster for <?php echo $hubs->icao;?></h3>
 <?php
-$hubs_details = HubStats::Pilots($hubs->hubicao);
+$hubs_details = HubStats::Pilots($hubs->icao);
 ?>
 
 <table width="100%" border="0">
@@ -176,4 +177,5 @@ if($feildvalue != '')
 
 <a href="<?php echo SITE_URL?>/index.php/Hub">Back</a>
 
-<p>&copy; Daniel Counahan. V1.1.</p>
+<!--Do not remove the copyright -->
+<p>&copy; 2014 Strider V1.2.</p>

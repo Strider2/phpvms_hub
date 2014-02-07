@@ -32,8 +32,8 @@ class Hub_admin extends CodonModule
     }
     public function get_hubs()
     {
-        $hubid = $_GET[hubid];
-        $this->set('hubs', HubData::get_hubs($hubid));
+        $icao = $_GET[icao];
+        $this->set('hubs', HubData::getHubs($icao));
         
         $this->show('hub/hubs_hub.tpl');
     }

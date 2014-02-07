@@ -16,7 +16,7 @@ echo '<h4>MVA Hubs</h4><hr />';
 
     foreach($hubs as $hub)
     {
-        echo '<tr><td><a href="'.SITE_URL.'/admin/index.php/Hub_admin/get_hubs?hubid='.$hub->hubid.'">'.$hub->hubicao.'</a></td>';
+        echo '<tr><td><a href="'.SITE_URL.'/admin/index.php/Hub_admin/get_hubs?icao='.$hub->icao.'">'.$hub->icao.'</a></td>';
         echo '<td>'. $hub->hubname .'</td></tr>';
     }
     
