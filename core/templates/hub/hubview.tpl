@@ -16,7 +16,7 @@
 </tr>
 <tr>
 	<td><strong>Hub Manager:</strong></td>
-    $manager = HubData::get_hubs($hubs->icao);
+    <?php $manager = HubData::get_hubs($hubs->icao);?>
     <td><a href="<?php echo SITE_URL?>/index.php/profile/view/<?php echo $manager->pilotid;?>"><?php echo $manager->manager;?></a></td>
 </table>
 
