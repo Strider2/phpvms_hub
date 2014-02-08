@@ -1,11 +1,11 @@
 <?php
 
 
-$this->show('aircraft/aircraft_header.tpl');
+$this->show('hub/hub_header.tpl');
 ?>
 
 
-<h4>Edit Codeshare</h4>
+<h4>Edit Hub</h4>
 <hr />
 <form name="eventform" action="<?php echo SITE_URL; ?>/admin/index.php/Hub_admin" method="post" enctype="multipart/form-data">
 <table width="80%">
