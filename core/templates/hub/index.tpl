@@ -20,7 +20,7 @@ foreach($hubs as $hub)
 <tr>
 	<td><?php echo $hub->icao;?></td>
     <td><?php echo $hub->name;?></td>
-    <td><a href="<?php echo SITE_URL;?>/index.php/Hub/HubView/<?php echo $hub->icao;?>"><span class="btn">View Details</span></a></td>
+    <td><a href="<?php echo SITE_URL;?>/index.php/Hub/HubView/<?php echo $hub->id;?>"><span class="btn">View Details</span></a></td>
 </tr>
 <?php
 }

@@ -1,4 +1,4 @@
-<h3><?php echo $hubs->hubicao;?> information</h3>
+<h3><?php echo $hubs->icao;?> information</h3>
 
 <table width="100%" border="0">
 <tr>
