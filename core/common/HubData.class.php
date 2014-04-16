@@ -7,11 +7,11 @@ class HubData extends CodonData
         return DB::get_results("SELECT * FROM ".TABLE_PREFIX."airports WHERE hub = 1");
 		
     }
-	public function getHubs($id)
+	public function getHubs($icao)
 	{
 		$query = "SELECT *
 				  FROM " . TABLE_PREFIX . "airports
-				  WHERE id = '$id'";
+				  WHERE icao = '$icao'";
 				  
 		return DB::get_row($query);
 	}

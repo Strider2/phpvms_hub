@@ -1,3 +1,4 @@
+
 <h3><?php echo $hubs->icao;?> information</h3>
 
 <table width="100%" border="0">
@@ -21,7 +22,22 @@
 </table>
 
 <h3><?php echo $hubs->icao;?> map</h3>
-<img src="http://www.gcmap.com/map?P=<?php echo $hubs->icao;?>,+&amp;MS=bm&MR=30&MX=700x360&PM=b:disc4:blue%2b%22%25i%25+%28N%2210:yellow&PC=%23ffffff&MP=rect" width="100%" />
+<!--<img src="http://www.gcmap.com/map?P=<?php echo $hubs->icao;?>,+&amp;MS=bm&MR=30&MX=700x360&PM=b:disc4:blue%2b%22%25i%25+%28N%2210:yellow&PC=%23ffffff&MP=rect" width="100%" />-->
+<script type="text/javascript">
+
+      function initialize() {
+        var mapDiv = document.getElementById('airport');
+        var map = new google.maps.Map(mapDiv, {
+          center: new google.maps.LatLng(<?php echo $hubs->lat;?> , <?php echo $hubs->lng;?> ),
+          zoom: 24,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
+        });
+      }
+      
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <div id="airport" style="width: 100%; height: 500px"></div>
 
 <h3><?php echo $hubs->icao;?> stats</h3>
 
@@ -55,9 +71,18 @@
 <h3>Pilot Roster for <?php echo $hubs->icao;?></h3>
 <?php
 $hubs_details = HubStats::Pilots($hubs->icao);
-?>
 
-<table width="100%" border="0">
+?>
+     <script type="text/javascript">
+$(document).ready(function() {
+	$('#plist').dataTable( {
+		"sPaginationType": "bootstrap"
+	} );
+} );
+		</script>
+        <div>
+<table width="100%"  id="plist" class="table table-striped">
+<thead>
 <tr id="tablehead">
   <th>Country</th>
 	<th>Pilot ID</th>
@@ -79,7 +104,8 @@ $hubs_details = HubStats::Pilots($hubs->icao);
   
 
 </tr>
-
+</thead>
+<tbody>
 <?php
 
 foreach($hubs_details as $pilot)
@@ -91,7 +117,7 @@ foreach($hubs_details as $pilot)
 		
      if($pilot->retired =='1') { continue; }
      if($pilot->totalhours =='0'){ continue; }
-
+	 if(!$pilot){echo "Sorry, no pilot allocated to this hub yet.";}
 ?>
 
 <tr>
@@ -172,10 +198,12 @@ if($feildvalue != '')
 
 
 
-</tr>  
+</tr> 
+</tbody> 
 </table>
+</div>
 
-<a href="<?php echo SITE_URL?>/index.php/Hub">Back</a>
+<a href="<?php echo SITE_URL?>/index.php/Hub"><span class="btn">Back</span></a>
 
 <!--Do not remove the copyright -->
-<p>&copy; 2014 Strider V1.2.</p>
+<p>&copy; 2014 Strider V1.3.</p>

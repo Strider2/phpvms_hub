@@ -19,9 +19,9 @@ class Hub extends CodonModule
 		$this->set('hubs', HubData::get_hub());
 		$this->render('hub/index.tpl');
 	}
-	public function HubView($id='')
+	public function HubView($icao='')
 	{
-		$hubs = HubData::getHubs($id);
+		$hubs = HubData::getHubs($icao);
 		$this->set('hubs', $hubs);
 		$this->render('hub/hubview.tpl');
 	}
