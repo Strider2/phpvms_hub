@@ -29,7 +29,7 @@
         var mapDiv = document.getElementById('airport');
         var map = new google.maps.Map(mapDiv, {
           center: new google.maps.LatLng(<?php echo $hubs->lat;?> , <?php echo $hubs->lng;?> ),
-          zoom: 24,
+          zoom: 14,
           mapTypeId: google.maps.MapTypeId.SATELLITE
         });
       }
@@ -71,6 +71,9 @@
 <h3>Pilot Roster for <?php echo $hubs->icao;?></h3>
 <?php
 $hubs_details = HubStats::Pilots($hubs->icao);
+if($hubs_details == ''){ echo 'Sorry, no Pilots allocated to this hub yet. <br />';}
+ else
+{ 
 
 ?>
      <script type="text/javascript">
@@ -107,14 +110,8 @@ $(document).ready(function() {
 </thead>
 <tbody>
 <?php
-
 foreach($hubs_details as $pilot)
-
-{
-
-	
-
-		
+{	
      if($pilot->retired =='1') { continue; }
      if($pilot->totalhours =='0'){ continue; }
 	 if(!$pilot){echo "Sorry, no pilot allocated to this hub yet.";}
@@ -202,7 +199,9 @@ if($feildvalue != '')
 </tbody> 
 </table>
 </div>
+<?php
 
+}?>
 <a href="<?php echo SITE_URL?>/index.php/Hub"><span class="btn">Back</span></a>
 
 <!--Do not remove the copyright -->
