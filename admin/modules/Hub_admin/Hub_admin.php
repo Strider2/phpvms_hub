@@ -46,7 +46,7 @@ class Hub_admin extends CodonModule
     protected function save_new_hub()
     {
     	if($this->post->hubicao == '') {
-    		$this->set('message', 'HUB ICAO is missing')
+    		$this->set('message', 'HUB ICAO is missing');
     		$this->show('core_error');
     		$this->set('hubs', HubData::get_hub());
         	$this->show('hub/hub_index');
@@ -72,10 +72,10 @@ class Hub_admin extends CodonModule
         }*/
         HubData::save_new_hub($hubr['hubicao'], $hubr['hubname'], $hubr['lat'], $hubr['lng'], $hubr['pilotid'], $hubr['manager'], $hubr['image']);
 	$this->set('message', 'HUB Added');
-	$this->show('core_success')
+	$this->show('core_success');
         $this->set('hubs', HubData::get_hub());
         $this->show('hub/hub_index');
-        LogData::addLog(Auth::$userinfo->pilotid, "Added a new hub.")
+        LogData::addLog(Auth::$userinfo->pilotid, "Added a new hub.");
     }
     public function edit_hub() {
             $hubid = $_GET[hubid];
