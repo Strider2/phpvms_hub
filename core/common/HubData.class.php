@@ -2,12 +2,12 @@
 
 class HubData extends CodonData
 {
-    public function get_hub()
+    static function get_hub()
     {
         return DB::get_results("SELECT * FROM ".TABLE_PREFIX."airports WHERE hub = 1");
 		
     }
-	public function getHubs($icao)
+	static function getHubs($icao)
 	{
 		$query = "SELECT *
 				  FROM " . TABLE_PREFIX . "airports
@@ -15,7 +15,7 @@ class HubData extends CodonData
 				  
 		return DB::get_row($query);
 	}
- 	/*public function getAircraft($aircraftid)
+ 	/*static function getAircraft($aircraftid)
     {
 		
         $query = "SELECT a.*, f.image
@@ -25,36 +25,36 @@ class HubData extends CodonData
 
         return DB::get_row($query);
     }*/
-    /*public function get_airline()
+    /*static function get_airline()
     {
         return DB::get_results("SELECT * FROM ".TABLE_PREFIX."codeshares GROUP BY airline");
     }*/
-	    public function get_hubs($icao)
+	    static function get_hubs($icao)
     {
         $query = "SELECT * FROM ".TABLE_PREFIX ."hubs WHERE hubicao='$icao'";
 
         return DB::get_row($query);
     }
-   public function get_past_hub()
+   static function get_past_hub()
     {
         $query = "SELECT * FROM phpvms_hubs
                 ORDER BY hubid DESC";
 
         return DB::get_results($query);
     }
-	 public function get_airports()
+	 static function get_airports()
     {
         return DB::get_results("SELECT * FROM ".TABLE_PREFIX."airports GROUP BY name");
     }
 				  
-    public function save_new_hub($hubicao, $hubname, $lat, $lng, $pilotid, $manager, $image)
+    static function save_new_hub($hubicao, $hubname, $lat, $lng, $pilotid, $manager, $image)
     {
         $query = "INSERT INTO phpvms_hubs (hubicao, hubname, lat, lng, pilotid, manager, image)
                 VALUES ('$hubicao', '$hubname', '$lat', '$lng', '$pilotid', '$manager', '$image')";
 
         DB::query($query);
     }
-     public function save_edit_hub($hubicao, $hubname, $lat, $lng, $pilotid, $manager, $image, $hubid)
+     static function save_edit_hub($hubicao, $hubname, $lat, $lng, $pilotid, $manager, $image, $hubid)
     {
         $query = "UPDATE phpvms_hubs SET
          hubicao='$hubicao',
@@ -69,7 +69,7 @@ class HubData extends CodonData
         DB::query($query);
     }
     
-    public function delete_hub($hubid)
+    static function delete_hub($hubid)
     {
         $query = "DELETE FROM phpvms_hubs
                     WHERE hubid='$hubid'";
