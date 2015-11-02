@@ -27,7 +27,7 @@ class Hub_admin extends CodonModule
         {
             $this->set('hubs', HubData::get_hub());
 			$this->set('history', HubData::get_past_hub());
-            $this->show('hub/hub_index.tpl');
+            $this->show('hub/hub_index');
         }
     }
     public function get_hubs()
@@ -35,16 +35,23 @@ class Hub_admin extends CodonModule
         $icao = $_GET[icao];
         $this->set('hubs', HubData::getHubs($icao));
         
-        $this->show('hub/hubs_hub.tpl');
+        $this->show('hub/hubs_hub');
     }
     public function new_hub()
     {
         $hubs = HubData::get_airports();
 		$this->set('hubs', $hubs);
-		$this->show('hub/hub_new_form.tpl');
+		$this->show('hub/hub_new_form');
     }
     protected function save_new_hub()
     {
+    	if($this->post->hubicao == '') {
+    		$this->set('message', 'HUB ICAO is missing')
+    		$this->show('core_error');
+    		$this->set('hubs', HubData::get_hub());
+        	$this->show('hub/hub_index');
+        	return;
+    	}
         $hubr = array();
 
         $hubr['hubicao'] = DB::escape($this->post->hubicao);
@@ -54,9 +61,6 @@ class Hub_admin extends CodonModule
 		$hubr['pilotid'] = DB::escape($this->post->pilotid);
 		$hubr['manager'] = DB::escape($this->post->manager);
 		$hubr['image'] = DB::escape($this->post->image);
-
-  
-
    /*     foreach($hubr as $test)
         {
             if(empty($test))
@@ -66,27 +70,29 @@ class Hub_admin extends CodonModule
                 return;
             }
         }*/
-
- 
-
         HubData::save_new_hub($hubr['hubicao'], $hubr['hubname'], $hubr['lat'], $hubr['lng'], $hubr['pilotid'], $hubr['manager'], $hubr['image']);
-                                   
-
-       
-
+	$this->set('message', 'HUB Added');
+	$this->show('core_success')
         $this->set('hubs', HubData::get_hub());
-       
-        $this->show('hub/hub_index.tpl');
+        $this->show('hub/hub_index');
+        LogData::addLog(Auth::$userinfo->pilotid, "Added a new hub.")
     }
     public function edit_hub() {
             $hubid = $_GET[hubid];
             $hubed = array();
             //$aircraft = AircraftData::get_aircrafts($id);
             $this->set('hubs', HubData::get_hubs($hubid));
-            $this->show('hub/hub_edit_form.tpl');
+            $this->show('hub/hub_edit_form');
     }
     protected function save_edit_hub()
     {
+    	if($this->post->hubicao == '') {
+    		$this->set('message', 'HUB ICAO is missing');
+    		$this->show('core_error');
+    		$this->set('hubs', HubData::get_hubs($hubid));
+        	$this->show('hub/hubs_hub');
+        	return;
+    	}
         $hb= array();
 
         $hb['hubicao'] = DB::escape($this->post->hubicao);
@@ -107,11 +113,12 @@ class Hub_admin extends CodonModule
 										   $hb['manager'],
 										   $hb['image'],
 										   $hb['hubid']);
-
         $hubid = $hb['hubid'];
+        $this->set('message', 'HUB Updated');
+        $this->show('core_success');
         $this->set('hubs', HubData::get_hubs($hubid));
-        
-        $this->show('hub/hubs_hub.tpl');
+        $this->show('hub/hubs_hub');
+        LogData::addLog(Auth::$userinfo->pilotid, "Edited a HUB.");
     }
  
     public function delete_hub()
@@ -120,6 +127,7 @@ class Hub_admin extends CodonModule
         HubData::delete_hub($hubid);
 
         $this->set('hub', HubData::get_hub());
-        $this->show('hub/hub_index.tpl');
+        $this->show('hub/hub_index');
+        LogData::addLog(Auth::$userinfo->pilotid, "Deleted a HUB.");
     }
 }
