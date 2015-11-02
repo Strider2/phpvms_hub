@@ -17,13 +17,13 @@ class Hub extends CodonModule
 	public function index()
 	{
 		$this->set('hubs', HubData::get_hub());
-		$this->render('hub/index.tpl');
+		$this->show('hub/index');
 	}
 	public function HubView($icao='')
 	{
 		$hubs = HubData::getHubs($icao);
 		$this->set('hubs', $hubs);
-		$this->render('hub/hubview.tpl');
+		$this->show('hub/hubview');
 	}
 }
 ?>
