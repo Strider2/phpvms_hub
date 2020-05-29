@@ -1,5 +1,13 @@
-<h3>Hubs</h3>
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-12">
+        <div class="widget">
+			<div class="widget-simple themed-background-dark">
 
+				<h4 class="widget-content widget-content-light themed-color-default">
+Hubs</h4>
+	</div>
+	<div class="widget-extra">
 <?php
 if(!$hubs)
 	{
@@ -28,3 +36,8 @@ foreach($hubs as $hub)
 </table>
 <!--Do not remove the copyright -->
 <p>&copy; 2014 Strider V1.4.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
