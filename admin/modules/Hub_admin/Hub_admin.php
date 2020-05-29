@@ -5,7 +5,7 @@ class Hub_admin extends CodonModule
 {
     public function HTMLHead()
     {
-        $this->set('sidebar', 'hub/sidebar_hub.tpl');
+        $this->set('sidebar', 'hub/sidebar_hub.php');
     }
 
     public function NavBar()
@@ -34,7 +34,7 @@ class Hub_admin extends CodonModule
     {
         $icao = $_GET[icao];
         $this->set('hubs', HubData::getHubs($icao));
-        
+
         $this->show('hub/hubs_hub');
     }
     public function new_hub()
@@ -66,7 +66,7 @@ class Hub_admin extends CodonModule
             if(empty($test))
             {
                 $this->set('aircrafts', $ac);
-                $this->show('aircraft/aircraft_new_form.tpl');
+                $this->show('aircraft/aircraft_new_form.php');
                 return;
             }
         }*/
@@ -96,17 +96,17 @@ class Hub_admin extends CodonModule
         $hb= array();
 
         $hb['hubicao'] = DB::escape($this->post->hubicao);
-        $hb['hubname'] = DB::escape($this->post->hubname);	
+        $hb['hubname'] = DB::escape($this->post->hubname);
 		$hb['lat'] = DB::escape($this->post->lat);
 		$hb['lng'] = DB::escape($this->post->lng);
 		$hb['pilotid'] = DB::escape($this->post->pilotid);
 		$hb['manager'] = DB::escape($this->post->manager);
 		$hb['image'] = DB::escape($this->post->image);
 		$hb['hubid'] = DB::escape($this->post->hubid);
-     
 
-        HubData::save_edit_hub($hb['hubicao'], 
-										   $hb['hubname'],   
+
+        HubData::save_edit_hub($hb['hubicao'],
+										   $hb['hubname'],
 										   $hb['lat'],
 										   $hb['lng'],
 										   $hb['pilotid'],
@@ -120,7 +120,7 @@ class Hub_admin extends CodonModule
         $this->show('hub/hubs_hub');
         LogData::addLog(Auth::$userinfo->pilotid, "Edited a HUB.");
     }
- 
+
     public function delete_hub()
     {
         $hubid = $_GET[hubid];

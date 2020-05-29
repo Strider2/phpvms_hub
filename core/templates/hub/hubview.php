@@ -1,6 +1,16 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-12">
+        <div class="widget">
+			<div class="widget-simple themed-background-dark">
+				<a href="javascript:void(0)" class="widget-icon pull-right themed-background">
+					<i class="gi gi-google_maps animation-floating"></i>
+				</a>
+				<h4 class="widget-content widget-content-light themed-color-default">
 
-<h3><?php echo $hubs->icao;?> information</h3>
-
+<?php echo $hubs->icao;?> information</h4>
+			</div>
+<div class="widget-extra">
 <table width="100%" border="0">
 <tr>
 	<td><strong>Hub ICAO:</strong></td>
@@ -23,7 +33,42 @@
 
 <h3><?php echo $hubs->icao;?> map</h3>
 <!--<img src="http://www.gcmap.com/map?P=<?php echo $hubs->icao;?>,+&amp;MS=bm&MR=30&MX=700x360&PM=b:disc4:blue%2b%22%25i%25+%28N%2210:yellow&PC=%23ffffff&MP=rect" width="100%" />-->
+<div class="mapcenter" align="center">
+	<div id="routemap" style="width: 80%; height: <?php echo Config::Get('MAP_HEIGHT')?>"></div>
+</div>
+<script src="<?php echo SITE_URL?>/lib/js/base_map.js"></script>
+
 <script type="text/javascript">
+<?php
+/* These are the settings for the Google map. You can see the
+	Google API reference if you want to add more options.
+
+	There's two options I've added:
+
+	autozoom: This will automatically center in on/zoom
+	  so all your current flights are visible. If false,
+	  then the zoom and center you specify will be used instead
+
+	refreshTime: Time, in seconds * 1000 to refresh the map.
+	  The default is 10000 (10 seconds)
+*/
+?>
+
+
+
+const map = createMap({
+		render_elem: 'routemap',
+		provider: '<?php echo Config::Get("MAP_TYPE"); ?>',
+	});
+
+	map.setView(new L.LatLng(<?php echo $hubs->lat; ?>, <?php echo $hubs->lng; ?>), 4);
+
+var airport_coords = {lat: <?php echo $hubs->lat; ?>, lng: <?php echo $hubs->lng; ?>};
+const marker = L.marker(airport_coords).addTo(map);
+
+
+</script>
+<!--<script type="text/javascript">
 
       function initialize() {
         var mapDiv = document.getElementById('airport');
@@ -33,10 +78,10 @@
           mapTypeId: google.maps.MapTypeId.SATELLITE
         });
       }
-      
+
 
       google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    </script>-->
     <div id="airport" style="width: 100%; height: 500px"></div>
 
 <h3><?php echo $hubs->icao;?> stats</h3>
@@ -73,7 +118,7 @@
 $hubs_details = HubStats::Pilots($hubs->icao);
 if($hubs_details == ''){ echo 'Sorry, no Pilots allocated to this hub yet. <br />';}
  else
-{ 
+{
 
 ?>
      <script type="text/javascript">
@@ -100,18 +145,18 @@ $(document).ready(function() {
     <th>Group</th>
 
     <th>Vatsim ID/IVAO ID</th>
-    
+
     <th>Active</th>
 
-   
-  
+
+
 
 </tr>
 </thead>
 <tbody>
 <?php
 foreach($hubs_details as $pilot)
-{	
+{
      if($pilot->retired =='1') { continue; }
      if($pilot->totalhours =='0'){ continue; }
 	 if(!$pilot){echo "Sorry, no pilot allocated to this hub yet.";}
@@ -126,15 +171,15 @@ foreach($hubs_details as $pilot)
 	</td>
 
 	<td>
-		
-			
+
+
 
 		<?php echo $pilot->firstname.' '.$pilot->lastname;?>
 
 	</td>
 
 	<td><img src="<?php echo $pilot->rankimage;?>" alt="<?php echo $pilot->rank;?>" /></td>
-    
+
 
 	<td><?php echo $pilot->totalflights; ?></td>
 
@@ -154,7 +199,7 @@ if($fieldvalue != '')
 }
 
  ?>
-<?php 
+<?php
 $feildvalue = PilotData::GetFieldValue($pilot->pilotid, 'IVAO ID');
 
 if($feildvalue != '')
@@ -166,7 +211,7 @@ if($feildvalue != '')
 
   <td>
   <?php
-                
+
                 if($pilot->retired == 0)
                         echo '<span class="label label-success">Active</span>';
                 elseif($pilot->retired == 1)
@@ -175,13 +220,13 @@ if($feildvalue != '')
                         echo '<span class="label label-error">Banned</span>';
                 elseif($pilot->retired == 3)
                         echo '<span class="label label-warning">On Leave</span>';
-                
+
                 ?>
   <!--<?php
                 if($pilot->retired == '1')
                 {echo '<img src="'.SITE_URL.'/lib/skins/mva/images/no.png" alt="Retired" /> - Retired';}
-                
-                
+
+
                 else
                 {echo '<img src="'.SITE_URL.'/lib/skins/mva/images/yes.png" alt="Active" /> - Active';}
             ?>-->
@@ -195,8 +240,8 @@ if($feildvalue != '')
 
 
 
-</tr> 
-</tbody> 
+</tr>
+</tbody>
 </table>
 </div>
 <?php
@@ -205,4 +250,9 @@ if($feildvalue != '')
 <a href="<?php echo SITE_URL?>/index.php/Hub"><span class="btn">Back</span></a>
 
 <!--Do not remove the copyright -->
-<p>&copy; 2014 Strider V1.3.</p>
+<p>&copy; 2014 Strider V1.4.</p>
+</div>
+</div>
+</div>
+</div>
+</div>

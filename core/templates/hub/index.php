@@ -1,6 +1,6 @@
 <h3>Hubs</h3>
 
-<?php 
+<?php
 if(!$hubs)
 	{
 		echo "You have not added any Hubs yet.";
@@ -13,7 +13,7 @@ if(!$hubs)
     <th>Airport Name</th>
     <th>View Details</th>
 </tr>
-<?php 
+<?php
 foreach($hubs as $hub)
 {
 ?>
@@ -27,4 +27,4 @@ foreach($hubs as $hub)
 ?>
 </table>
 <!--Do not remove the copyright -->
-<p>&copy; 2014 Strider V1.3.</p>
+<p>&copy; 2014 Strider V1.4.</p>
