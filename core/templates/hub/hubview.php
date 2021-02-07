@@ -204,7 +204,7 @@ $feildvalue = PilotData::GetFieldValue($pilot->pilotid, 'IVAO ID');
 
 if($feildvalue != '')
 {
-	echo '<img src="http://status.ivao.aero/R/'.$feildvalue.'.png">';
+	echo '<img src="https://status.ivao.aero/R/'.$feildvalue.'.png">';
     }
     ?>
  </td>
